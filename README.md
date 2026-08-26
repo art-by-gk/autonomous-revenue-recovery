@@ -67,7 +67,7 @@ Defines the core data contracts and enums:
 -   `LedgerRecord`
 
 The ledger records also identify the decision source and outcome source.
-fileciteturn3file3L49-L63
+
 
 ### `policy.py`
 
@@ -101,8 +101,7 @@ It:
 7.  exposes the API and dashboard
 
 The webhook endpoint accepts a `PaymentEvent` and starts the recovery
-workflow as a background task. fileciteturn3file2L17-L23
-fileciteturn3file2L114-L120
+workflow as a background task.
 
 ### `simulator.py`
 
@@ -110,7 +109,7 @@ Provides synthetic gateway outcomes for benchmarking.
 
 The simulator uses fixed benchmark probabilities for recovery actions.
 These are synthetic assumptions, not learned ML predictions.
-fileciteturn3file7L5-L22
+
 
   Action                         Synthetic success probability
   ---------------------------- -------------------------------
@@ -134,8 +133,7 @@ Maintains the SQLite recovery audit ledger and calculates:
 -   transaction history
 
 The ledger records each attempt and calculates financial metrics using
-the transaction history. fileciteturn3file0L49-L72
-fileciteturn3file0L78-L121
+the transaction history.
 
 ### `llm_review.py`
 
@@ -154,7 +152,6 @@ instructed to:
 
 The LLM is explicitly not allowed to approve, reject, retry, refund,
 cancel, escalate, or execute payment actions.
-fileciteturn3file1L12-L31 fileciteturn3file1L62-L96
 
 ## Benchmark
 
@@ -171,12 +168,11 @@ The benchmark uses a reproducible synthetic dataset:
 The edge cases exercise important policy boundaries, including timeout,
 insufficient funds, expired instruments, the ₹15,000 high-value
 boundary, suspicious transactions, the maximum-attempt boundary, and the
-₹14,999 below-threshold boundary. fileciteturn3file6L16-L27
+₹14,999 below-threshold boundary.
 
 The generated dataset uses a fixed seed for reproducibility, and the
 benchmark explicitly identifies its gateway outcomes as synthetic rather
-than ML predictions. fileciteturn3file6L29-L43
-fileciteturn3file6L62-L73
+than ML predictions.
 
 ## Safety Boundaries
 
@@ -193,11 +189,10 @@ Recovery Ledger → LLM Review → Human Reviewer
 
 The LLM does not override policy, modify the recovery ledger, or execute
 payments. The review endpoint is explicitly exposed as an on-demand
-human-review assist mode. fileciteturn3file2L123-L140
+human-review assist mode.
 
 Autonomous recovery is bounded by a maximum of three attempts, while
 suspicious or high-value transactions are routed to human review.
-fileciteturn3file4L7-L29
 
 ## Metrics
 
@@ -214,7 +209,6 @@ The dashboard exposes:
 -   recovery status
 
 The financial summary is derived from the recovery ledger.
-fileciteturn3file0L106-L121
 
 These are benchmark results from synthetic events and should not be
 interpreted as real-world payment performance.
@@ -275,7 +269,7 @@ pip install -r requirements.txt
 ```
 
 The current dependency list includes FastAPI, Uvicorn, Pydantic, Pandas,
-`python-dotenv`, and Groq. fileciteturn3file5L1-L6
+`python-dotenv`, and Groq.
 
 ### 4. Configure the review copilot
 
@@ -297,7 +291,6 @@ python benchmark/run_batch.py
 The benchmark initializes the recovery ledger, resets previous synthetic
 benchmark data, generates the 200-transaction dataset, executes the
 closed-loop workflow, and prints the financial audit summary.
-fileciteturn3file6L62-L82
 
 ## Run the Application
 
@@ -318,7 +311,6 @@ GET  /
 
 The dashboard provides recovery metrics, audit history, transaction
 inspection, and the on-demand review copilot.
-fileciteturn3file2L114-L145
 
 ## Example Policy Flow
 
