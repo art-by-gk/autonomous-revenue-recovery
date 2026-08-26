@@ -85,8 +85,6 @@ Current policy boundaries include:
 -   use a generic reminder as the fallback for other non-risk declines
 
 These rules are implemented directly in the bounded intervention policy.
-fileciteturn3file4L4-L15 fileciteturn3file4L18-L30
-fileciteturn3file4L33-L72
 
 ### `main.py`
 
